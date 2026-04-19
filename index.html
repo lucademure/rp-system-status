@@ -509,5 +509,40 @@
     </footer>
   </div>
 </body>
+  <!-- Besucherzähler -->
+<div style="
+  position: fixed;
+  bottom: 15px;
+  left: 20px;
+  background: rgba(15, 20, 30, 0.85);
+  padding: 10px 18px;
+  border-radius: 10px;
+  color: #00d4ff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+">
+  👁 Besucher: <span id="visitor-count">Lädt...</span>
+</div>
+
+<script>
+(function() {
+  const namespace = "rp_hud_projekt_2026"; // bereits fest vergeben
+  const key = "main_counter";
+
+  fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("visitor-count").innerText = data.value;
+    })
+    .catch(() => {
+      document.getElementById("visitor-count").innerText = "Offline";
+    });
+})();
+</script>
 </html>
 
